@@ -1,8 +1,9 @@
 import React from "react";
+import {v4 as uuidv4} from 'uuid';
 import Botao from "../Botao";
+import { ITarefa } from "../../types/tarefas";
 
 import style from './Formulario.module.scss'
-import { ITarefa } from "../../types/tarefas";
 
 class Formulario extends React.Component<{setTarefas: React.Dispatch<React.SetStateAction<ITarefa[]>> }> {
     state = {
@@ -20,8 +21,21 @@ class Formulario extends React.Component<{setTarefas: React.Dispatch<React.SetSt
 
     adicionarTarefa(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        this.props.setTarefas(tarefasAntigas => [...tarefasAntigas, {...this.state}])
-        console.log(this.state)
+        
+        this.props.setTarefas(tarefasAntigas => [
+            ...tarefasAntigas, 
+            {
+                ...this.state,
+                selecionado: false,
+                completado: false,
+                id: uuidv4()
+            }
+        ]);
+
+        this.setState({
+            tarefa: "",
+            tempo: "00:00"
+        });
     }
 
     render() {
@@ -33,7 +47,7 @@ class Formulario extends React.Component<{setTarefas: React.Dispatch<React.SetSt
                         type="text" 
                         name="tarefa" 
                         id="tarefa"
-                        defaultValue={this.state.tarefa}
+                        value={this.state.tarefa}
                         onChange={this.handleChangeTask.bind(this)}
                         placeholder="O que você quer estudar"
                         required 
@@ -46,7 +60,7 @@ class Formulario extends React.Component<{setTarefas: React.Dispatch<React.SetSt
                         step={1}
                         name="tempo" 
                         id="tempo"
-                        defaultValue={this.state.tempo}
+                        value={this.state.tempo}
                         onChange={this.handleChangeTime.bind(this)}
                         min="00:00:00"
                         max="01:30:00"
