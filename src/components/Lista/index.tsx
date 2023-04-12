@@ -1,5 +1,4 @@
-import React from "react";
-
+import Item from './Item'
 import style from './Lista.module.scss'
 
 export default function Lista() {
@@ -15,10 +14,7 @@ export default function Lista() {
 
             <ul>
                 {tarefas.map((item, index) => (
-                    <li key={index} className={style.item}>
-                        <h3>{item.tarefa}</h3>
-                        <span>{item.tempo}</span>
-                    </li>
+                    <Item key={index} {...item} />
                 ))} 
             </ul>
         </aside>
