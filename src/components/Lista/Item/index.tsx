@@ -15,9 +15,11 @@ export default function Item(
         selecionaTarefa
     }: Props) {
 
+    const isSelected = selecionado ? style.itemSelecionado : '';
+
     return (
         <li 
-        className={style.item} 
+        className={`${style.item} ${isSelected}`} 
         onClick={() => selecionaTarefa({
             tarefa, 
             tempo, 
