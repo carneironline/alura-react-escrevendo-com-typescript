@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Projeto do Curso React: Escrevendo com Typescrypt
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Primeiro curso da formação Gerencie aplicações React com Typescript da Alura
 
 ## Available Scripts
 
